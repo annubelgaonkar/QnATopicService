@@ -12,7 +12,6 @@ import java.util.Optional;
 
 
 @Service
-@RequiredArgsConstructor
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
@@ -46,7 +45,6 @@ public class QuestionService {
         return questionRepository.findById(id)
                 .map(question -> {
                     question.setQuestion(updatedQuestion.getQuestion());
-                    question.setCorrectAnswer(updatedQuestion.getCorrectAnswer());
                     question.setDifficultyLevel(updatedQuestion.getDifficultyLevel());
                     return questionRepository.save(question);
                 })

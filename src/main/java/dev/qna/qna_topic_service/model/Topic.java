@@ -18,6 +18,7 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String difficultyLevel;
 
     public Long getId() {
         return id;
