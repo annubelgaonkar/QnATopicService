@@ -28,10 +28,14 @@ public class LLMClient {
     }
 
     public QuestionResponseDTO fetchQuestionFromLLM(String topic, String difficulty){
-        // Use WebClient or RestTemplate to call OpenAI
+
         String prompt = String.format(
-                "Generate a single %s difficulty question on the topic of %s. Return only the question.",
-                difficulty, topic);
+                "I want to improve my knowledge on a specific topic. The topic is \"%s\". " +
+                        "Please ask me a %s level question about this topic. " +
+                        "I will give you an answer, and you have to correct me if I am wrong and give me more information about the topic in a helpful way. " +
+                        "If it's a coding or software-related topic, you can give code also.",
+                topic, difficulty
+        );
 
         Map<String, Object> requestBody = Map.of(
                 "model", model,
