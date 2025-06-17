@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseResponseDTO<T> {
-    private boolean success;
-    private String message;
-    private T data;
-
+public class EvaluationRequestDTO {
+    private String topic;
+    private String question;
+    private String userAnswer;
 }
