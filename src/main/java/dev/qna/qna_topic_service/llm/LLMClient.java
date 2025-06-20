@@ -15,6 +15,12 @@ public class LLMClient {
 
     private final WebClient webClient;
 
+    @Value("${llm.prompt.question}")
+    private String questionPrompt;
+
+    @Value("${llm.prompt.feedback}")
+    private String feedbackPrompt;
+
     @Value("${openai.api.key}")
     private String apiKey;
 
@@ -30,13 +36,7 @@ public class LLMClient {
 
     public QuestionResponseDTO fetchQuestionFromLLM(String topic, String difficulty){
 
-        String prompt = String.format(
-                "I want to improve my knowledge on a specific topic. The topic is \"%s\". " +
-                        "Please ask me a %s level question about this topic. " +
-                        "I will give you an answer, and you have to correct me if I am wrong and give me more information about the topic in a helpful way. " +
-                        "If it's a coding or software-related topic, you can give code also.",
-                topic, difficulty
-        );
+        String prompt = String.format(questionPrompt, topic, difficulty);
 
         Map<String, Object> requestBody = Map.of(
                 "model", model,
@@ -65,11 +65,7 @@ public class LLMClient {
 
     //logic for evaluating user's answer
     public EvaluationResponseDTO fetchFeedbackFromLLM(String topic, String question, String userAnswer){
-        String prompt = String.format(
-                "Topic: %s\nQuestion: %s\nUser's Answer: %s\n" +
-                        "Please evaluate this answer and respond in a helpful and corrective way.",
-                topic, question, userAnswer
-        );
+        String prompt = String.format(feedbackPrompt, topic, question, userAnswer);
 
         Map<String, Object> requestBody = Map.of(
                 "model", model,
