@@ -40,6 +40,7 @@ public class LLMController {
             ));
     }
 
+    //End points for tutor module
     // New endpoint for tutorSession that doesn't require difficulty
     @PostMapping("/generateTutor")
     public ResponseEntity<BaseResponseDTO<GenerateQuestionResponseDTO>> generateQuestionForTutor(
@@ -64,4 +65,16 @@ public class LLMController {
                 new GenerateQuestionResponseDTO(question)));
     }
 
+    @PostMapping("/evaluateForTutor")
+    public ResponseEntity<BaseResponseDTO<EvaluationResponseForTutorDTO>> evaluateForTutor(
+            @RequestBody EvaluationRequestDTO request){
+        EvaluationResponseForTutorDTO response =
+                llmClient.fetchFeedbackAndNextQuestionForTutor(
+                        request.getTopic(),
+                        request.getQuestion(),
+                        request.getUserAnswer()
+                );
+
+        return ResponseEntity.ok(new BaseResponseDTO<>())
+    }
 }
