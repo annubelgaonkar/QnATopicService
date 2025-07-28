@@ -6,7 +6,7 @@ import dev.qna.qna_topic_service.dto.QuestionResponseDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import dev.qna.qna_topic_service.llm.LLMClient;
+import dev.qna.qna_topic_service.client.LLMClient;
 
 @Service
 @AllArgsConstructor

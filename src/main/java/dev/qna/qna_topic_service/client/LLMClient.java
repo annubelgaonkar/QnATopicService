@@ -1,7 +1,7 @@
-package dev.qna.qna_topic_service.llm;
+package dev.qna.qna_topic_service.client;
 
 import dev.qna.qna_topic_service.dto.EvaluationResponseDTO;
-import dev.qna.qna_topic_service.dto.GenerateQuestionRequestDTO;
+import dev.qna.qna_topic_service.dto.EvaluationResponseForTutorDTO;
 import dev.qna.qna_topic_service.dto.QuestionResponseDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -113,5 +113,11 @@ public class LLMClient {
                 .get("message")).get("content").toString();
 
         return question.trim();
+    }
+
+
+    public EvaluationResponseForTutorDTO fetchFeedbackAndNextQuestionForTutor(String topic, String question, String userAnswer) {
+
+
     }
 }

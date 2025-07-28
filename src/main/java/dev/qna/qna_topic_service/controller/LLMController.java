@@ -1,7 +1,7 @@
 package dev.qna.qna_topic_service.controller;
 
 import dev.qna.qna_topic_service.dto.*;
-import dev.qna.qna_topic_service.llm.LLMClient;
+import dev.qna.qna_topic_service.client.LLMClient;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -75,6 +75,10 @@ public class LLMController {
                         request.getUserAnswer()
                 );
 
-        return ResponseEntity.ok(new BaseResponseDTO<>())
+        return ResponseEntity.ok(new BaseResponseDTO<>(
+                true,
+                "Evaluation completed",
+                response
+        ));
     }
 }
