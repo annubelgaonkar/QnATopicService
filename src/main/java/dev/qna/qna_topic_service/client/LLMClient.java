@@ -134,8 +134,7 @@ public class LLMClient {
                 "model", model,
                 "messages", new Object[]{
                         Map.of("role", "system",
-                                "content",
-                                "You are a helpful tutor evaluating the user's answer."),
+                                "content","You are a helpful tutor evaluating the user's answer."),
                         Map.of("role", "user", "content", prompt)
                 },
                 "temperature", 0.7
